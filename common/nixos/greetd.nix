@@ -1,36 +1,27 @@
-{ pkgs, ... }:
-let
-  theme = ''border=blue;text=yellow;prompt=green;action=cyan;button=magenta;container=black;input=white'';
-in
 {
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r --asterisks --asterisks-char • --window-padding 1 -t --time-format '%H:%M | %a  %d %b %Y' -g 'Welcome back!' -c 'Hyprland > /dev/null 2>&1' --theme '${theme}'";
+        command = "Hyprland --config /etc/greetd/greetland.conf > /dev/null 2>&1";
         user = "greeter";
       };
     };
   };
 
-  environment.systemPackages = with pkgs; [ greetd.tuigreet ];
+  stylix.targets.regreet.enable = true;
+  programs.regreet.enable = true;
 
-  # this is a life saver.
-  # literally no documentation about this anywhere.
-  # might be good to write about this...
-  # https://www.reddit.com/r/NixOS/comments/u0cdpi/tuigreet_with_xmonad_how/
-  systemd.services.greetd.serviceConfig = {
-    Type = "idle";
-    StandardInput = "tty";
-    StandardOutput = "tty";
-    StandardError = "journal"; # Without this errors will spam on screen
-    # Without these bootlogs will spam on screen
-    TTYReset = true;
-    TTYVHangup = true;
-    TTYVTDisallocate = true;
-  };
+  environment.etc."greetd/greetland.conf".text = # hyprland config for launcing regreet
+    ''
+      exec-once = regreet; hyprctl dispatch exit
+      misc {
+          disable_hyprland_logo = true
+          disable_splash_rendering = true
+          disable_hyprland_qtutils_check = true
+      }
+    '';
 
   # To prevent getting stuck at shutdown
   systemd.extraConfig = "DefaultTimeoutStopSec=10s";
 }
-
