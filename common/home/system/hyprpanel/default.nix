@@ -40,7 +40,9 @@ let
   yazi = ''${pkgs.kitty}/bin/kitty --class=yazi zsh -c 'yazi'';
 in
 {
-  wayland.windowManager.hyprland.settings.exec-once = [ "${pkgs.hyprpanel}/bin/hyprpanel" ];
+  wayland.windowManager.hyprland.settings.exec-once = [
+    "uwsm app -- ${pkgs.hyprpanel}/bin/hyprpanel"
+  ];
 
   home.packages = with pkgs; [
     hyprpanel

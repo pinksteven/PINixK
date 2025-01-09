@@ -1,11 +1,10 @@
 {
   wayland.windowManager.hyprland.settings = {
     exec-once = [
-      "sleep 2; vesktop --start-minimized"
-      "easyeffects --gapplication-service"
-      "syncthing --no-browser"
-      "steam -silent"
-      "hyprctl dispatch exec '[workspace special:spotify silent] spotify'; sleep 10; hyprctl dispatch closewindow spotify"
+      "sleep 2; uwsm app -- vesktop --start-minimized"
+      "uwsm app -- easyeffects --gapplication-service"
+      "uwsm app -- syncthing --no-browser"
+      "uwsm app -- steam -silent"
     ];
   };
 }

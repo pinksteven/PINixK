@@ -57,6 +57,9 @@ in
     nixos.enable = false;
   };
 
+  # use uwsm to manage hyprland like the wiki recommends
+  programs.uwsm.enable = true;
+
   environment.systemPackages = with pkgs; [
     fd
     bc
