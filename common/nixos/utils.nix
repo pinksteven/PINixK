@@ -1,4 +1,10 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  inputs,
+  ...
+}:
 let
   hostname = config.var.hostname;
   keyboardLayout = config.var.keyboardLayout;
@@ -58,7 +64,17 @@ in
   };
 
   # use uwsm to manage hyprland like the wiki recommends
-  programs.uwsm.enable = true;
+  programs = {
+    uwsm = {
+      enable = true;
+      waylandCompositors.hyprland = {
+        prettyName = "Hyprland";
+        comment = "Hyprland compositor managed by UWSM";
+        binPath = "${lib.getExe inputs.hyprland.packages.${pkgs.system}.hyprland}";
+      };
+    };
+    hyprland.withUWSM = true;
+  };
 
   environment.systemPackages = with pkgs; [
     fd

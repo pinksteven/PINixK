@@ -1,5 +1,5 @@
 # - ## Hyprpanel
-#- 
+#-
 #- Quick scripts to toggle, reload and kill hyprpanel.
 #-
 #- - `hyprpanel-toggle` - Toggle hyprpanel.
@@ -37,10 +37,15 @@ let
   '';
 
   hyprpanel-reload = pkgs.writeShellScriptBin "hyprpanel-reload" ''
-    [ $(pgrep "ags") ] && pkill ags
+    hyprpanel -q
     hyprctl dispatch exec hyprpanel
   '';
-in {
-  home.packages =
-    [ hyprpanel-toggle hyprpanel-reload hyprpanel-hide hyprpanel-show ];
+in
+{
+  home.packages = [
+    hyprpanel-toggle
+    hyprpanel-reload
+    hyprpanel-hide
+    hyprpanel-show
+  ];
 }
