@@ -70,7 +70,6 @@ in
     enable = true;
     xwayland.enable = true;
     systemd.enable = false;
-    # withUWSM = true;
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
     plugins = [
