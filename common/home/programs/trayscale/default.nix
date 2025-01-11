@@ -1,4 +1,9 @@
+{ pkgs, ... }:
 {
-    services.trayscale.enable = true;
-    services.trayscale.hideWindow=true;
+  services.trayscale = {
+    enable = true;
+    hideWindow = true;
+    package = pkgs.trayscale;
+  };
 }
+

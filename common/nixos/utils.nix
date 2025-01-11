@@ -40,7 +40,10 @@ in
   services.libinput.enable = true;
   programs.dconf.enable = true;
   services = {
-    dbus.enable = true;
+    dbus = {
+      enable = true;
+      implementation = "broker";
+    };
     gvfs.enable = true;
     upower.enable = true;
     power-profiles-daemon.enable = true;
