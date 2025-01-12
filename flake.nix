@@ -12,6 +12,14 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    eww = {
+      url = "github:elkowar/eww";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixcord = {
+      url = "github:KaylorBen/nixcord";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixvim-config.url = "github:pinksteven/nixvim";
     stylix.url = "github:danth/stylix";
     tinted-theming = {
