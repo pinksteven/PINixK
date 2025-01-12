@@ -11,6 +11,7 @@
     targets.plymouth.enable = false;
 
     base16Scheme = "${inputs.tinted-theming}/base16/" + "rose-pine.yaml";
+    polarity = "dark";
 
     cursor = {
       package = pkgs.bibata-cursors;

@@ -73,7 +73,7 @@ in
       waylandCompositors.hyprland = {
         prettyName = "Hyprland";
         comment = "Hyprland compositor managed by UWSM";
-        binPath = "/run/current-system/sw/bin/Hyprland";
+        binPath = "${lib.getExe inputs.hyprland.packages.${pkgs.system}.hyprland}";
       };
     };
     hyprland.withUWSM = true;
